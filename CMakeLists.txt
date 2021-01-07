@@ -3,6 +3,6 @@ project(game)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(game jsf/main.cpp jsf/gameLoop/GameLoop.cpp jsf/gameLoop/GameLoop.h)
+add_executable(game jsf/main.cpp jsf/gameLoop/Game.cpp jsf/gameLoop/Game.h)
 
 target_link_libraries(game PRIVATE SDL2)

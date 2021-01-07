@@ -2,21 +2,21 @@
 // Created by jason on 07/01/2021.
 //
 
-#include <stdio.h>
+#include <iostream>
 #include <SDL2/SDL.h>
 #ifndef GAME_GAMELOOP_H
 #define GAME_GAMELOOP_H
 
 
-class GameLoop {
+class Game {
 
     public:
-        GameLoop();
-        ~GameLoop();
+        Game();
+        ~Game();
 
         void init(const char* title, int xpos, int ypos, int width, int hight, bool fullscreen);
 
-        void eventHandeler();
+        void eventHandler();
         void update();
         void render();
         void clean();
@@ -24,9 +24,9 @@ class GameLoop {
         bool running();
 
     private:
-        bool isRunning();
-        SDL_Window  *window();
-        SDL_Renderer *renderer();
+        bool isRunning;
+        SDL_Window  *window;
+        SDL_Renderer *renderer;
 };
 
 
