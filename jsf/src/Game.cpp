@@ -1,19 +1,16 @@
 //
 // Created by jason on 07/01/2021.
 //
-
 #include "Game.h"
+#include "TextureManager.h"
+#include "GameObject.h"
 
-    int cnt = 0;
     int screenSize = 0;
 
-    SDL_Rect srcRect, destRect;
-    SDL_Texture* loadingScreen = nullptr;
+    GameObject* player;
 
     Game::Game() {}
     Game::~Game() {}
-
-
 
     void Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) {
 
@@ -28,7 +25,7 @@
             window = SDL_CreateWindow(title, xpos, ypos, width, height, screenSize);
             if (window) {
 
-                std::cout << "constricted window..." << std::endl;
+                std::cout << "constructed window..." << std::endl;
             }
 
             renderer = SDL_CreateRenderer(window, -1, 0);
@@ -38,17 +35,10 @@
 
                 std::cout << "constructed and deployed renderer boss. we are running" << std::endl;
             }
-
-            SDL_Surface* tempSurface = IMG_Load("jsf/assets/digiScribble.jpg");
-            if(tempSurface == NULL){
-                std::cout << "there was no image at the location folder" << std::endl;
-            }
-
-            loadingScreen = SDL_CreateTextureFromSurface(renderer, tempSurface);
-            SDL_FreeSurface(tempSurface);
-
             isRunning = true;
         }
+
+        player = new GameObject("jsf/assets/raz.png", renderer);
     }
 
     void Game::eventHandler() {
@@ -68,28 +58,13 @@
 
     void Game::update() {
 
-        destRect.w = destRect.h = 500;
-
-
-        if(cnt < 510){
-
-            if(cnt%2 == 0){
-
-                SDL_SetTextureBlendMode(loadingScreen, SDL_BLENDMODE_BLEND);
-
-                SDL_SetTextureAlphaMod(loadingScreen, alpha);
-                alpha++;
-            }
-            std::cout << alpha << std::endl;
-            cnt++;
-
-        }
+        player -> Update();
     }
 
     void Game::render() {
 
         SDL_RenderClear(renderer);
-        SDL_RenderCopy(renderer, loadingScreen, nullptr, &destRect);
+        player -> Render();
         SDL_RenderPresent(renderer);
     }
 

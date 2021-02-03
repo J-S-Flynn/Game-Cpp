@@ -1,13 +1,11 @@
 //
 // Created by jason on 07/01/2021.
 //
-
+#pragma once
 #include <iostream>
 #include <unistd.h>
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
-#ifndef GAME_SRC_H
-#define GAME_SRC_H
 
 class Game {
 
@@ -26,11 +24,7 @@ class Game {
         bool running() const;
 
     private:
-        int alpha;
         bool isRunning;
         SDL_Window  *window;
         SDL_Renderer *renderer;
 };
-
-
-#endif //GAME_SRC_H
