@@ -13,16 +13,20 @@ GameObject::GameObject(const char* textureSheet, SDL_Renderer *ren) {
 
 void GameObject::Update() {
 
+    int tWidth;
+    int tHeight;
+
+    SDL_QueryTexture(objTexture, NULL, NULL, &tWidth, &tHeight);
     xPos = 0;
     yPos = 0;
 
-    srcRect.w = 300;
-    srcRect.h = 400;
+    srcRect.w = tWidth;
+    srcRect.h = tHeight;
     srcRect.x = 0;
     srcRect.y = 0;
 
-    dstRect.w = srcRect.w / 4 ;
-    dstRect.h = srcRect.h / 4 ;
+    dstRect.w = srcRect.w / 3 ;
+    dstRect.h = srcRect.h / 3 ;
     dstRect.x = xPos;
     dstRect.y = yPos;
 }
